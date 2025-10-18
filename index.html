@@ -422,207 +422,142 @@
     </footer>
     <!-- JAVASCRIPT FOR CHARTS -->
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const menuPrincipal = document.querySelector('.menu-principal');
-        const menuOpciones = document.querySelector('.menu-opciones');
+    // =====================
+// MENÚ RESPONSIVO
+// =====================
+document.addEventListener('DOMContentLoaded', function () {
+    const menuPrincipal = document.querySelector('.menu-principal');
+    const menuOpciones = document.querySelector('.menu-opciones');
 
-        if (menuPrincipal && menuOpciones) {
-            menuPrincipal.addEventListener('click', () => {
-                // Toggle entre mostrar y ocultar
-                if (menuOpciones.style.display === 'flex') {
-                    menuOpciones.style.display = 'none';
-                } else {
-                    menuOpciones.style.display = 'flex';
-                }
-            });
-        }
-    });
-        // Datos para gráfico de temperatura
-        const tempData = {
-            labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep'],
-            datasets: [{
-                label: 'Temperatura promedio (°C)',
-                data: , [22, 23, 24, 25, 25, 24, 24, 24, 23],
-                borderColor: '#2d7a2d',
-                backgroundColor: 'rgba(45, 122, 45, 0.15)',
-                borderWidth: 3,
-                tension: 0.4,
-                fill: true,
-                pointRadius: 6,
-                pointBackgroundColor: '#2d7a2d',
-                pointBorderColor: '#fff',
-                pointBorderWidth: 2,
-                pointHoverRadius: 8
-            }]
-        };
-
-        // Datos para gráfico de temperatura
-        const tempData = {
-            labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep'],
-            datasets: [{
-                label: 'Temperatura promedio (°C)',
-                data: [22, 23, 24, 25, 25, 24, 24, 24, 23],
-                borderColor: '#2d7a2d',
-                backgroundColor: 'rgba(45, 122, 45, 0.15)',
-                borderWidth: 3,
-                tension: 0.4,
-                fill: true,
-                pointRadius: 6,
-                pointBackgroundColor: '#2d7a2d',
-                pointBorderColor: '#fff',
-                pointBorderWidth: 2,
-                pointHoverRadius: 8
-            }]
-        };
-
-        // Datos para gráfico sísmico
-        const seismicData = {
-            labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep'],
-            datasets: [{
-                label: 'Eventos sísmicos (M < 3.0)',
-                data: [450, 300, 280, 320, 450, 480, 520, 600, 380],
-                backgroundColor: '#4a9d4a',
-                borderColor: '#2d7a2d',
-                borderWidth: 2,
-                borderRadius: 8
-            }]
-        };
-
-        // Configuración del gráfico de temperatura
-        const tempConfig = {
-            type: 'line',
-            data: tempData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    legend: {
-                        display: true,
-                        labels: {
-                            font: {
-                                size: 14,
-                                weight: '600'
-                            },
-                            color: '#1a1a1a'
-                        }
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(45, 122, 45, 0.95)',
-                        titleFont: {
-                            size: 15,
-                            weight: '600'
-                        },
-                        bodyFont: {
-                            size: 14
-                        },
-                        padding: 14,
-                        cornerRadius: 8
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: false,
-                        min: 10,
-                        max: 90,
-                        ticks: {
-                            font: {
-                                size: 13,
-                                weight: '500'
-                            },
-                            color: '#333',
-                            callback: function(value) {
-                                return value + '°C';
-                            }
-                        },
-                        grid: {
-                            color: 'rgba(0, 0, 0, 0.06)'
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            font: {
-                                size: 13,
-                                weight: '500'
-                            },
-                            color: '#333'
-                        },
-                        grid: {
-                            display: false
-                        }
-                    }
-                }
-            }
-        };
-
-        // Configuración del gráfico sísmico
-        const seismicConfig = {
-            type: 'bar',
-            data: seismicData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    legend: {
-                        display: true,
-                        labels: {
-                            font: {
-                                size: 14,
-                                weight: '600'
-                            },
-                            color: '#1a1a1a'
-                        }
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(45, 122, 45, 0.95)',
-                        titleFont: {
-                            size: 15,
-                            weight: '600'
-                        },
-                        bodyFont: {
-                            size: 14
-                        },
-                        padding: 14,
-                        cornerRadius: 8
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            font: {
-                                size: 13,
-                                weight: '500'
-                            },
-                            color: '#333'
-                        },
-                        grid: {
-                            color: 'rgba(0, 0, 0, 0.06)'
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            font: {
-                                size: 13,
-                                weight: '500'
-                            },
-                            color: '#333'
-                        },
-                        grid: {
-                            display: false
-                        }
-                    }
-                }
-            }
-        };
-
-        // Inicializar gráficos cuando se carga la página
-        window.addEventListener('load', function() {
-            const tempCtx = document.getElementById('tempChart').getContext('2d');
-            new Chart(tempCtx, tempConfig);
-
-            const seismicCtx = document.getElementById('seismicChart').getContext('2d');
-            new Chart(seismicCtx, seismicConfig);
+    if (menuPrincipal && menuOpciones) {
+        menuPrincipal.addEventListener('click', () => {
+            menuOpciones.style.display = (menuOpciones.style.display === 'flex') ? 'none' : 'flex';
         });
+    }
+});
+
+// =====================
+// DATOS PARA LOS GRÁFICOS
+// =====================
+
+// Temperatura en Ausoles
+const tempData = {
+    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep'],
+    datasets: [{
+        label: 'Temperatura promedio (°C)',
+        data: [22, 23, 24, 25, 25, 24, 24, 24, 23],
+        borderColor: '#2d7a2d',
+        backgroundColor: 'rgba(45, 122, 45, 0.15)',
+        borderWidth: 3,
+        tension: 0.4,
+        fill: true,
+        pointRadius: 6,
+        pointBackgroundColor: '#2d7a2d',
+        pointBorderColor: '#fff',
+        pointBorderWidth: 2,
+        pointHoverRadius: 8
+    }]
+};
+
+// Eventos sísmicos
+const seismicData = {
+    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep'],
+    datasets: [{
+        label: 'Eventos sísmicos (M < 3.0)',
+        data: [450, 300, 280, 320, 450, 480, 520, 600, 380],
+        backgroundColor: '#4a9d4a',
+        borderColor: '#2d7a2d',
+        borderWidth: 2,
+        borderRadius: 8
+    }]
+};
+
+// =====================
+// CONFIGURACIÓN DE GRÁFICOS
+// =====================
+
+// Gráfico de temperatura
+const tempConfig = {
+    type: 'line',
+    data: tempData,
+    options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+            legend: {
+                display: true,
+                labels: {
+                    font: { size: 14, weight: '600' },
+                    color: '#1a1a1a'
+                }
+            },
+            tooltip: {
+                backgroundColor: 'rgba(45, 122, 45, 0.95)',
+                titleFont: { size: 15, weight: '600' },
+                bodyFont: { size: 14 },
+                padding: 14,
+                cornerRadius: 8
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: false,
+                min: 10,
+                max: 90,
+                ticks: {
+                    font: { size: 13, weight: '500' },
+                    color: '#333',
+                    callback: value => value + '°C'
+                },
+                grid: {
+                    color: 'rgba(0, 0, 0, 0.06)'
+                }
+            },
+            x: {
+                ticks: {
+                    font: { size: 13, weight: '500' },
+                    color: '#333'
+                },
+                grid: { display: false }
+            }
+        }
+    }
+};
+
+// Gráfico sísmico
+const seismicConfig = {
+    type: 'bar',
+    data: seismicData,
+    options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+            legend: {
+                display: true,
+                labels: {
+                    font: { size: 14, weight: '600' },
+                    color: '#1a1a1a'
+                }
+            },
+            tooltip: {
+                backgroundColor: 'rgba(45, 122, 45, 0.95)',
+                titleFont: { size: 15, weight: '600' },
+                bodyFont: { size: 14 },
+                padding: 14,
+                cornerRadius: 8
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    font: { size: 13, weight: '500' },
+                    color: '#333'
+                },
+                grid: {
+                    color: 'rgba(0, 0, 0, 0.06)'
+                }
+            },
     </script>
 </body>
 </html>
