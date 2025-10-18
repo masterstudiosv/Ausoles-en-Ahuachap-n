@@ -23,6 +23,12 @@
     font-size: 1.1rem; /* Podés ajustar el tamaño si querés */
 }
 
+.pisiqui strong {
+  color: white;
+  font-weight: bold;
+  font-size: 1.1em; /* Ajusta el tamaño según necesites */
+}
+
 
 
        /* Header */ 
@@ -739,3 +745,4 @@
         display: none;
     }
 }
+
